@@ -6,3 +6,14 @@
 精灵图（雪碧图）应用
 背景颜色渐变
 伪元素选择器使用
+<<<<<<< HEAD
+
+预览效果
+
+![截图00.png](https://i.loli.net/2020/08/26/DmcWYp2khJGKXoS.png)
+![截图01.png](https://i.loli.net/2020/08/26/HT1bK4OwhpDf2xB.png)
+
+
+
+=======
+>>>>>>> 62191779c785952fd5e49443d1075310de43840a
