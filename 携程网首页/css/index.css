@@ -1,0 +1,400 @@
+/* body初始化样式 */
+body {
+    max-width: 540px;/*最大宽度*/
+    min-width: 320px;/*最小宽度*/
+    margin: 0 auto;/*所有内容居中*/
+    font: normal 14px/1.5 Tahoma, "Lucida Grande", Verdana, "Microsoft Yahei", STXihei, hei;
+    /* 正常字体，14，1.5倍行距 */
+    color: #000;
+    background: #f2f2f2;
+    /* 永远不会出现水平滚动条 */
+    overflow-x: hidden;
+    /* 防止元素点击之后背景会高亮，改为透明 */
+    -webkit-tap-highlight-color: transparent;
+    height: 2000px;
+}
+
+
+a{
+    text-decoration: none;/*a标签取消下划线*/
+    color: #222;
+}
+div{
+    box-sizing: border-box;/*s使用c3盒模型，不用计算*/
+}
+
+ul{
+    /* ul有默认的margin和padding值 */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* 搜索模块 */
+/*使用固定定位*/
+.search-index {  
+    /* 固定定位跟父级没有关系 它以屏幕为准 */ 
+    position: fixed;
+    /* 固定的盒子应该有宽度 */
+    width: 100%;
+    /*限定移动端的大小*/
+    min-width: 320px;
+    max-width: 540px;
+    height: 44px;
+    /* 背景颜色: pink; */
+    /* background-color:pink; */
+    background-color: #F6F6F6;
+    /* 设置居中对齐，因为有定位了，所以这时候设置margin：0 auto是无效的 */
+    /*可以通过left值来调整，left值改为50%  ，然后在往左走自己宽度的一半，但由于宽度不确定，所以使用fransform属性*/
+    top: 0;
+    left: 50%;
+    /*如果left设置为0，则fransform属性不用写，也能实现同样的效果*/
+    -webkit-transform: translateX(-50%);
+    /*兼容老版本的safari浏览器*/
+    transform: translateX(-50%);
+
+    display: flex;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+.search{
+    flex: 1;
+    height: 26px;
+    border: 1px solid #ccc;
+    margin: 7px 10px;/*上下外边框6px，左右外边框10px*/
+    border-radius: 5px;
+    position: relative;/*因为子元素before使用绝对定位*/
+    font-size: 12px;
+    color: #666;
+    padding-left: 25px;/*使文字左移*/
+    line-height: 24px;/*行高为26，border-box，所以行高等于26-1-1（border）-0（padding-top）*/
+    box-shadow: 0 2px 4px rgba(0,0,0, .2);/*水平方向不用，垂直方向2像素，模糊度4像素*/
+}
+.search::before{
+    content: "";
+    /* display: block; */
+    /* before称为块级元素之后会把后面的“搜索：目的地/酒店/景点/航班号”换行
+    解决方法：就是给before元素一个绝对定位，绝对定位不占位置，加上绝对定位也直接有大小 */
+    width: 15px;
+    height: 15px;
+    background:url(../images/sprite.png) no-repeat -59px -279px;
+    background-size: 104px auto;
+    /*使用margin值来进行移动*/
+    /* margin: 5px; */
+    /*解决文字不在同一行*/
+    position: absolute;/*添加的绝对定位margin值就没有效果了*/
+    top:5px;
+    left: 5px;/*before元素此时的父亲是search，所以需要给父亲添加position：relative*/
+
+}
+/*a标签是行内元素，没有大小，给父元素添加flex属性就可以了*/
+.user {
+    width: 44px;
+    height: 44px;
+     /* background-color: purple; */
+    font-size: 12px;
+    text-align: center;
+    color: #2eaae0;
+}
+/* 右侧固定，左侧自适应 */
+
+/*
+ 精灵图（2倍图或者3倍图）测量方法：
+（1）在ps中等比例缩放为原来的一半像素
+（2）把所需要的图片的大小量出来 ，以及对应的坐标，在background处设置
+（3）把精灵图进行缩放，使用background-size属性
+*/
+.user::before {
+    content: "";
+    display: block;
+    width: 23px;
+    height: 23px;
+    background: url(../images/sprite.png) no-repeat -59px -194px ;
+    background-size: 104px auto;/*将精灵图缩小为原来的一半*/
+    margin: 4px auto -2px;/*给上面来一个小距离*/
+} 
+.foucus{
+    padding-top: 44px;
+}
+.foucus img{
+    width: 100%;/*宽度自适应，与父亲一样*/
+}
+/* 局部导航栏 */
+.local-nav{
+    height: 64px;
+    background-color: #fff;
+    border-radius: 8px;
+    margin: 3px 4px;
+    display: flex;
+}
+.local-nav li{
+    flex:1;
+}
+
+.local-nav li a{
+    display: flex;
+    flex-direction: column;
+    align-items: center;/*侧轴居中对齐*/
+    font-size: 12px;
+}
+.local-nav li [class^="local-nav-icon"]{
+    width: 32px;
+    height: 32px;
+    /* background-color: pink; */
+    margin:8px 0 4px;
+    background:url(../images/localnav_bg.png) no-repeat 0 0;
+    background-size: 32px auto;
+}
+.local-nav li .local-nav-icon-icon2{
+    background-position:0 -32px ;/*背景图往上走*/
+}
+.local-nav li .local-nav-icon-icon3{
+    background-position:0 -64px ;/*背景图往上走*/
+}
+.local-nav li .local-nav-icon-icon4{
+    background-position:0 -96px ;/*背景图往上走*/
+}
+.local-nav li .local-nav-icon-icon5{
+    background-position:0 -128px ;/*背景图往上走*/
+}
+/*主导航栏*/
+nav{
+    border-radius: 8px;
+    margin: 0 4px 3px;
+    overflow: hidden;/*超出部分隐藏*/
+}
+
+.nav-common{
+    height: 88px;
+    background-color: pink;
+    display: flex;
+}
+
+.nav-common:nth-child(2){
+    margin: 3px 0;
+}
+
+.nav-items{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+}
+/* 给前两个孩子加上边框 */
+/* n+2是从第二个开始 ，-n+3是前三个开始，-n+2是选择前面两个孩子*/
+.nav-items:nth-child(-n+2){
+    border-right: 1px solid #fff ;
+
+}
+.nav-items a{
+    flex: 1;
+    text-align: center;/*里面文字水平居中*/
+    line-height: 44px;
+    color: #fff;
+    font-size: 14px;
+    /* 文字阴影 */
+    text-shadow: 1px 1px rgba(0,0,0, .2);
+}
+.nav-items a:nth-child(1){
+    border-bottom: 1px solid #fff;
+}
+/* nav-common的第一列不需要底下的border */
+.nav-items:nth-child(1) a{
+    border:0;
+    background: url(../images/hotel.png) no-repeat bottom center;
+    /* 靠底端对齐，水平居中对齐 */
+    background-size: 121px auto;
+}
+
+
+
+
+/* 渐变颜色处理 */
+.nav-common:nth-child(1){
+    background: -webkit-linear-gradient(left, #FA5A55, #FA994D);
+}
+.nav-common:nth-child(2) {
+    background: -webkit-linear-gradient(left, #4B90ED, #53BCED);
+}
+
+.nav-common:nth-child(3) {
+    background: -webkit-linear-gradient(left, #34C2A9, #6CD559);
+}
+/* 侧导航栏模块 */
+.subnav-entry{
+    border-radius: 8px;
+    background-color: #fff;
+    margin: 0 4px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px 0;
+}
+.subnav-entry li{
+    flex:20%;
+}
+.subnav-entry a{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.subnav-entry li [class^="subnav-entry-icon"]{
+    width: 28px;
+    height: 28px;
+    background-color:purple;
+    margin-top: 4px;
+    background: url(../images/subnav-bg.png) no-repeat;
+    background-size: 28px auto;
+}
+.subnav-entry li .subnav-entry-icon-icon2{
+    background-position: 0 -28px;
+}
+.subnav-entry li .subnav-entry-icon-icon3{
+    background-position: 0 -62px;
+}
+.subnav-entry li .subnav-entry-icon-icon4{
+    background-position: 0 -95px;
+}
+.subnav-entry li .subnav-entry-icon-icon5{
+    background-position: 0 -127px;
+}
+.subnav-entry li .subnav-entry-icon-icon6{
+    background-position: 0 -160px;
+}
+.subnav-entry li .subnav-entry-icon-icon7{
+    background-position: 0 -196px;
+}
+.subnav-entry li .subnav-entry-icon-icon8{
+    background-position: 0 -224px;
+}
+.subnav-entry li .subnav-entry-icon-icon9{
+    background-position: 0 -252px;
+}
+.subnav-entry li .subnav-entry-icon-icon10{
+    background-position: 0 -286px;
+}
+/* 销售模块  */
+.sales-box{
+    border-top: 1px solid #bbb;
+    background-color: #fff;
+    margin: 0px 4px ;
+}
+
+.sales-hd{
+    height: 40px;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+}
+
+.sales-hd h2{
+    text-indent: -999px;
+    /* 缩进999像素，隐藏文字，但是有利于搜索引擎 */
+    overflow: hidden;
+    position: relative;
+
+}
+.sales-hd h2::after{
+    content: "";
+    width: 79px;
+    height: 15px;
+    /* 此时属于行内元素，看不到，需要使用定位 */
+     position: absolute;/*脱离文档流，以父元素为非static的为准 ，此时父元素为.sales-hd h2
+    /*调整位置 */
+    top: 2px;
+    left: 12px;
+    background:url(../images/hot.png) no-repeat 0 -20px;
+    background-size: 79px auto;
+}
+
+
+.more{
+    /* 父级是sales-hd */
+    position: absolute;
+    right: 5px;
+    top: 0px;
+    background: -webkit-linear-gradient(left, #FF506C, #FF6BC6);
+    border-radius: 15px;
+    padding: 3px 20px 3px 10px;
+    color: #fff;
+}
+/*小三角 */
+.more::after {
+    content: "";
+    /* 父级是sales-hd */
+    position: absolute;
+    top: 8px;
+    right: 9px;
+    width: 7px;
+    height: 7px;
+    border-top: 2px solid #fff;
+    border-right: 2px solid #fff;
+    transform: rotate(45deg);
+    /* 顺时针旋转45度 */
+}
+.row {
+    display: flex;
+}
+
+.row a {
+    flex: 1;
+    border-bottom: 1px solid #eee;
+}
+
+.row a:nth-child(1) {
+    border-right: 1px solid #eee;
+}
+
+.row a img {
+    width: 100%;
+}
+footer{
+   
+    background-color:#fff;
+
+}
+/* 脚部 */
+.foot-cn{
+    display: flex;
+    height: 54px;
+    margin: 6px 4px;
+    background-color:#fff;
+    box-shadow: 0 2px 4px rgba(71, 42, 42, 0.1);
+
+}
+
+.foot-cn a{
+    flex: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+.foot-cn span{
+    flex:1;
+    color: #666666;
+}
+
+.foot-cn a [class^="foot-cn-icon"]{
+    content: "";
+    display: block;
+    width: 23px;
+    height: 23px;
+    background: url(../images/sprite.png) no-repeat -61px -166px ;
+    background-size: 115px auto;/*将精灵图缩小为原来的一半*/
+    margin: 4px auto -2px;/*给上面来一个小距离*/
+}
+
+.foot-cn a .foot-cn-icon-icon2{
+    background-position: -62px -188px;
+}
+.foot-cn a .foot-cn-icon-icon3{
+    background-position: -65px -339px;
+}
+p,.foot-ver  {
+    margin: 3px;
+    text-align: center;
+    font-size: 12px;
+    color:#666666 ;
+}
+.foot-ver a{
+    color:#666666 ;
+}
